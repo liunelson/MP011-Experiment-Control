@@ -1,0 +1,128 @@
+;/*++
+;
+;Copyright (c) Spectral Instruments.  All rights reserved.
+;
+;Module Name:
+;
+;    Si6371.INF
+;
+;Abstract:
+;    INF file for Spectral Instruments Si6371 driver.
+;
+;--*/
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=SiHardware
+ClassGuid={b1044ff1-111c-4270-983d-c65077493f6e}
+Provider=%SPECINST%
+DriverVer=08/11/2011,6.1.7600.16385
+CatalogFile=Si6371.cat
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+; ================= Class section =====================
+
+[ClassInstall32]
+Addreg=SiHwClass     
+
+[SiHwClass]
+HKR,,,,%ClassName%
+HKR,,Icon,,-5
+HKR,,Security,,"D:P(A;;GA;;;SY)(A;;GA;;;BA)(A;;GA;;;BU)" ;Allow generic all access to system and World. 
+HKR,,DeviceCharacteristics,0x10001,0x100     ;Use same security checks on relative opens
+
+
+; HKR,,Security,,"D:P(A;;GA;;;SY)(A;;GA;;;BA)" ;Allow generic all access to system and built-in Admin. 
+; HKR,,Security,,"D:P(A;;GRGW;;;AU)" ;Allow read write to all users. 
+
+
+; ================= Device Install section =====================
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+[Manufacturer]
+%SPECINST%=SPECINST,NTx86
+
+[SourceDisksFiles]
+Si6371.sys=1
+
+[SourceDisksNames]
+1=%DISK_NAME%,
+
+; For Win2K
+[SPECINST]
+; DisplayName           Section           DeviceId
+; -----------           -------           --------
+%Si5208.DRVDESC%=      Si6371_Inst,     PCI\VEN_10b5&DEV_3079
+%Si3097.DRVDESC%=      Si6371_Inst,     PCI\VEN_10b5&DEV_2679
+
+; For XP and later
+[SPECINST.NTx86]
+; DisplayName           Section           DeviceId
+; -----------           -------           --------
+%Si5208.DRVDESC%=      Si6371_Inst,     PCI\VEN_10b5&DEV_3079
+%Si3097.DRVDESC%=      Si6371_Inst,     PCI\VEN_10b5&DEV_2679
+
+[Si6371_Inst.NTx86]
+CopyFiles=Si6371.CopyFiles
+
+[Si6371.CopyFiles]
+Si6371.sys
+
+[Si6371_Inst.NTx86.HW]
+addreg=DIOSD
+
+[DIOSD]
+HKR,,Security,,"D:P(A;;GA;;;WD)" ;Allow read write to all users. 
+
+
+[Si6371_Inst.NTx86.Services]
+AddService=Si6371,0x00000002,Si6371_Service 
+
+[Si6371_Service]
+DisplayName    = %Si6371.SVCDESC%                            
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 3                  ; SERVICE_DEMAND_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\Si6371.sys                            
+AddReg         = Si6371_Parameters_AddReg
+
+[Si6371_Parameters_AddReg]
+HKR, Parameters\Wdf, VerboseOn,       0x00010001, 1
+HKR, Parameters\Wdf, VerifierOn,      0x00010001, 1
+HKR, Parameters\Wdf, DbgBreakOnError, 0x00010001, 1
+
+
+;-------------- Coinstaller installation
+[DestinationDirs]
+CoInstaller_CopyFiles = 11
+
+[Si6371_Inst.NTx86.CoInstallers]
+AddReg=CoInstaller_AddReg
+CopyFiles=CoInstaller_CopyFiles
+
+[CoInstaller_CopyFiles]
+WdfCoInstaller01009.dll
+
+[SourceDisksFiles]
+WdfCoInstaller01009.dll=1 ; make sure the number matches with SourceDisksNames
+
+[CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller01009.dll,WdfCoInstaller"
+
+[Si6371_Inst.NTx86.Wdf]
+KmdfService = Si6371, Si6371_wdfsect
+[Si6371_wdfsect]
+KmdfLibraryVersion = 1.9
+
+[Strings]
+SPECINST = "Spectral Instruments"
+ClassName = "SI Camera Drivers"
+Si6371.SVCDESC = "Spectral Instruments Si6371 Driver Service"
+Si3097.DRVDESC = "Spectral Instruments Driver for Si3097"
+Si5208.DRVDESC = "Spectral Instruments Driver for Si5208"
+DISK_NAME = "SI Image installation disk"
+

@@ -1,0 +1,79 @@
+[Camera Operation]
+CCD Type = "EEV 42-40"
+DSP Code File Name = "5362A.bin"
+Baud Rate = 57600    
+Triggered Acquisition = TRUE
+TDI Int. = TRUE
+TDI Ext. = TRUE
+TimeOut = 2.000000
+
+[Readout & Format]
+Serial Origin = 50
+Serial Length = 1024
+Serial Binning = 1
+Serial Post Scan = 0
+Parallel Origin = 0
+Parallel Length = 2048
+Parallel Binning = 1
+Parallel Post Scan = 0
+Exposure Time = 30
+Continuous Clear = 0
+DSI Sample Time = 21
+Analog Attenuation = 0
+Port 1 Offset = 480
+Port 2 Offset = 460
+Not Used = 0
+TDI Delay = 10
+# Samples/Pixel = 0
+Command on Trigger = 4
+
+[Readout Mode 0]
+Readout Speed = 800000
+DSI Sample Time = 21
+Analog Attenuation = 0
+Port 1 Offset = 480
+Port 2 Offset = 460
+
+[Readout Mode 1]
+Readout Speed = 400000
+DSI Sample Time = 83
+Analog Attenuation = 0
+Port 1 Offset = 320
+Port 2 Offset = 279
+
+[Readout Mode 2]
+Readout Speed = 200000
+DSI Sample Time = 207
+Analog Attenuation = 2
+Port 1 Offset = 291
+Port 2 Offset = 250
+
+[Readout Mode 3]
+Readout Speed = 100000
+DSI Sample Time = 452
+Analog Attenuation = 3
+Port 1 Offset = 293
+Port 2 Offset = 255
+
+[Configuration]
+Instrument Model = 802
+Instrument SN = 402
+Hardware Revision = 1
+Serial Phasing = 0
+Serial Split = 1
+Serial Size = 1074
+Parallel Phasing = 0
+Parallel Split = 0
+Parallel Size = 2048
+Parallel Shift Delay = 220
+Number of Ports = 1
+Shutter Close Delay = 10
+CCD Temp. Setpoint Offset = 68
+Low Temp Limit = 0
+CCD Temperature Setpoint = 2380
+Operational Temp = 0
+Not Used = 0
+Port Select = 2
+Operational Pressure = 0
+High Pressure Limit = 0
+Pixel Clear = 1

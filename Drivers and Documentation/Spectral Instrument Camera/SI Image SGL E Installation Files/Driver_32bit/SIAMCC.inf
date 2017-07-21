@@ -1,0 +1,59 @@
+; (c) Copyright 2001 Spectral Instruments, Inc. 
+;
+[Version]
+Signature="$CHICAGO$"
+Class=SIHardware
+ClassGuid={b1044ff1-111c-4270-983d-c65077493f6e}
+Provider="Spectral Instruments Inc."
+DriverVer=11/1/2001,1.0.0.0
+
+[ClassInstall32]
+Addreg=SiHwClass
+
+[SiHwClass]
+HKR,,,,%ClassName%
+HKR,,Icon,,"-5"
+
+[DestinationDirs]
+DefaultDestDir=10,system32\drivers
+
+[Manufacturer]
+%Mfg%=MfgDeviceSection
+
+[MfgDeviceSection]
+%DeviceDesc% = SiAmccPci, PCI\VEN_10E8&DEV_80B6
+
+;Windows 2000/XP specific items
+[SiAmccPci.NTx86]
+CopyFiles=@SIAMCCSYS.sys
+DriverVer=05/24/2001,1.0.0.0
+
+[SiAmccPci.NTx86.Services]
+AddService = SIAMCCSYS,%SPSVCINST_ASSOCSERVICE%,Amcc_Service_Inst
+
+[Amcc_Service_Inst]
+ServiceType   = %SERVICE_KERNEL_DRIVER%
+StartType     = %SERVICE_BOOT_START%
+ErrorControl  = %SERVICE_ERROR_NORMAL%
+ServiceBinary = %12%\SIAMCCSYS.sys 
+
+;Windows 98/Me specific items
+[SiAmccPci]
+CopyFiles=@siwdmsys.sys
+AddReg=Si.AddReg
+DriverVer=09/12/2001,1.0.0.0
+Reboot
+
+[Si.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,siwdmsys.sys
+
+[Strings]
+DiskId = "SI Installation Disk"
+Mfg = "Spectral Instruments"
+ClassName ="SI Camera Drivers"
+DeviceDesc = "Spectral Instruments Camera Interface"
+SPSVCINST_ASSOCSERVICE = 0x00000002
+SERVICE_KERNEL_DRIVER  = 1
+SERVICE_BOOT_START    = 3
+SERVICE_ERROR_NORMAL  = 1
