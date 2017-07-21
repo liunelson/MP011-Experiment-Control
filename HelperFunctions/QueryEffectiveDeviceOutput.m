@@ -1,0 +1,39 @@
+function QueryEffectiveDeviceOutput
+
+    % Load handles from base workspace
+    handles = evalin('base','handles');
+
+    % Query effective voltage (in kV)
+    serverCmd = sprintf('sendrcv %s %s', handles.HV_comTermChar, '?1');
+    [handles.HV_serverObj, serverAns, err] = SendReceiveSerial(...
+    'send_receive', ...
+    handles.HV_serverObj, ...
+    serverCmd, ...
+    handles.com_waitTime.client_server, ...
+    handles.com_numTry...
+    );
+
+    handles.Voltage(handles.CurrTimePoint,3) = -10*str2double(serverAns(1:end-1)); % drop ';' at the end of returned value
+    
+    % Update panel
+    set(handles.figGUI_panHV_Voltage, 'String',sprintf('%.3f',handles.Voltage(handles.CurrTimePoint,3)));
+
+    % Query effective current (in uA)
+    serverCmd = sprintf('sendrcv %s %s', handles.HV_comTermChar, '?2');
+    [handles.HV_serverObj, serverAns, err] = SendReceiveSerial(...
+    'send_receive', ...
+    handles.HV_serverObj, ...
+    serverCmd, ...
+    handles.com_waitTime.client_server, ...
+    handles.com_numTry...
+    );
+
+    handles.Current(handles.CurrTimePoint,3) = 10*str2double(serverAns(1:end-1)); % drop ';' at the end of returned value
+    
+    % Update panel
+    set(handles.figGUI_panHV_Current, 'String',sprintf('%.3f',handles.Current(handles.CurrTimePoint,3)));
+
+    % Save handles in base workspace
+    assignin('base','handles',handles)
+
+end
