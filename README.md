@@ -1,6 +1,6 @@
 # Documentation
 
-*MP011-Experimental-Control* is a MATLAB application for instrument control and data acquisition. It is meant for users of the ultrafast electron diffraction experimental lab in MP011 of the [R. J. Dwayne Miller group](http://lphys.chem.utoronto.ca/) at the University of Toronto. This app is designed to interface with multiple scientific instruments over TCP-IP ethernet and RS232 serial communication while being portable to any recent version of MATLAB (from R2014a to R2017a) and Microsoft Windows (from WinXP to Win10). It is also structured to be modular, such that device interfaces can be easily added, removed, or changed.
+*MP011-Experimental-Control* is a MATLAB application for instrument control and data acquisition. It is meant for users of the ultrafast electron diffraction experimental lab in MP011 of the [R. J. Dwayne Miller group](http://lphys.chem.utoronto.ca/) at the University of Toronto. This app is designed to interface with multiple scientific instruments over TCP-IP ethernet and RS232 serial communication while being portable to any recent version of MATLAB (from R2014a to R2017a) and Microsoft Windows (from WinXP to Win10). It is also structured to be modular, such that device interfaces can be easily added, removed, or changed. The interface between the app and hardware layers is handled by device-specific instances of *MP011-Server* ([link](https://github.com/liunelson/MP011-Server)), an in-house server program that receives commands from the client over TCP-IP and then sends appropriate command packets (and receives data packets) to the device through a serial COM port.
 
 ![Screenshot of MP011-Experiment-Control app.](MP011-app.png)
 
@@ -40,7 +40,7 @@ To actually talk to the devices, make sure that the following steps are taken al
 2. Install the National Instruments (NI) VISA driver on the app computer (necessary for the oscilloscope).
 3. Place the MATLAB instrument driver file for the oscilloscope (`tektronix_dpo2024.mdd`) in the subfolder `\toolbox\instrument\instrument\drivers` where MATLAB is installed.
 4. Install and run the SI Image SGL camera control program and enable the TCP-IP server.
-5. Run the server program associated with each of the devices on the server computer.
+5. Run the server program associated with each of the devices on the server computer ([link](https://github.com/liunelson/MP011-Server)).
 6. Connect the server computer to the same local network as the control computer.
 
 For ease of operation, I would recommend allocating fixed IP addresses to the server computer and any other TCP-IP devices to avoid having to reset too often the default IP addresses on the app. 
