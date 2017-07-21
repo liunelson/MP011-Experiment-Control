@@ -1,19 +1,19 @@
 # Documentation
 
-*MP011-Experimental-Control* is a MATLAB application for instrument control and data acquisition. It is meant for users of the ultrafast electron diffraction experimental lab in MP011 of the R. J. Dwayne Miller group at the University of Toronto. This app is designed to interface with multiple scientific instruments over TCP-IP and RS232 serial communication while being portable to any recent version of MATLAB (R2014a–R2017a) and Microsoft Windows (WinXP to Win10). It is also structured to be modular, such that device interfaces can be easily added, removed, or changed.
+*MP011-Experimental-Control* is a MATLAB application for instrument control and data acquisition. It is meant for users of the ultrafast electron diffraction experimental lab in MP011 of the [R. J. Dwayne Miller group](http://lphys.chem.utoronto.ca/) at the University of Toronto. This app is designed to interface with multiple scientific instruments over TCP-IP ethernet and RS232 serial communication while being portable to any recent version of MATLAB (from R2014a to R2017a) and Microsoft Windows (from WinXP to Win10). It is also structured to be modular, such that device interfaces can be easily added, removed, or changed.
 
 ![Screenshot of MP011-Experiment-Control app.](MP011-app.png)
 
 The app can currently interface with the following devices:
-- Matsusada Precision AF series HV power supply [(link)](https://www.matsusada.com/product/psel/hvps1/rack/000042/) controlled via a Stanford Research Systems (SRS) SR245 computer interface module [(link)](http://www.thinksrs.com/products/SR245.htm)
-- Spectral Instrument (SI) 800 series cooled CCD camera [(link)](http://www.specinst.com/Brochures%20Rev%20B/800S-camera-broch_revB.pdf)
-- Vincent Associates (VA) Uniblitz VMM-T1 optical shutter drivers [(link)](https://www.uniblitz.com/product-category/shutter-drivers/)
-- Newport ILS200PP motorized linear translation stage [(link)](https://www.newport.com/p/ILS200PP) via a Newport SMC100CC single-axis motion controller [(link)](https://www.newport.com/p/SMC100PP)
-- X, Y, Z motorized linear translation stages via Parker Automation 6K series motion controllers [(link)](http://www.parkermotion.com/products/Controllers__1745__30_32_80_567_29.html)
-- miCos RS40 compact rotation stage [(link)](https://www.physikinstrumente.com/en/products/rotation-stages/stages-with-worm-gear-drives/rs-40-compact-rotation-stage-1204000/) via a miCos SMC Pollux stepper controller [(link)](http://www.micosusa.com/product/prodDetail.cfm_firstlevel=2&sublevel=45&prodid=167.htm)
-- Coherent Micra-5 laser oscillator [(link)](https://www.coherent.com/lasers/main/ultrafast-laser-oscillators-and-amplifiers/ultrafast-oscillators/)
-- Thermo Electron Neslab RTE7 circulating chiller [(link)](https://www.nist.gov/laboratories/tools-instruments/thermo-scientific-neslab-rte-7-circulating-bath)
-- Tektronix DPO2024 oscilloscope [(link)](http://www.tek.com/oscilloscope/mso2000-dpo2000)
+- Matsusada Precision AF series HV power supply ([link](https://www.matsusada.com/product/psel/hvps1/rack/000042/)) controlled via a Stanford Research Systems (SRS) SR245 computer interface module ([link](http://www.thinksrs.com/products/SR245.htm))
+- Spectral Instrument (SI) 800 series cooled CCD camera ([link](http://www.specinst.com/Brochures%20Rev%20B/800S-camera-broch_revB.pdf))
+- Vincent Associates (VA) Uniblitz VMM-T1 optical shutter drivers ([link](https://www.uniblitz.com/product-category/shutter-drivers/))
+- Newport ILS200PP motorized linear translation stage ([link](https://www.newport.com/p/ILS200PP)) via a Newport SMC100CC single-axis motion controller ([link](https://www.newport.com/p/SMC100PP))
+- X, Y, Z motorized linear translation stages via Parker Automation 6K series motion controllers ([link](http://www.parkermotion.com/products/Controllers__1745__30_32_80_567_29.html))
+- miCos RS40 compact rotation stage ([link](https://www.physikinstrumente.com/en/products/rotation-stages/stages-with-worm-gear-drives/rs-40-compact-rotation-stage-1204000/)) via a miCos SMC Pollux stepper controller ([link](http://www.micosusa.com/product/prodDetail.cfm_firstlevel=2&sublevel=45&prodid=167.htm))
+- Coherent Micra-5 laser oscillator ([link](https://www.coherent.com/lasers/main/ultrafast-laser-oscillators-and-amplifiers/ultrafast-oscillators/))
+- Thermo Electron Neslab RTE7 circulating chiller ([link](https://www.nist.gov/laboratories/tools-instruments/thermo-scientific-neslab-rte-7-circulating-bath))
+- Tektronix DPO2024 oscilloscope ([link](http://www.tek.com/oscilloscope/mso2000-dpo2000))
 
 ## Quick Start
 
@@ -45,11 +45,11 @@ To actually talk to the devices, make sure that the following steps are taken al
 
 For ease of operation, I would recommend allocating fixed IP addresses to the server computer and any other TCP-IP devices to avoid having to reset too often the default IP addresses on the app. 
 
-When the app is launched for the first time, `mksqlite` may complain about some missing files (`msvcr100.dll` and `msvcp100.dll`). These DLLs are from the Microsoft Visual C++ 2010 Redistributable Package and could be found by copying them over from somewhere else to the MATLAB subfolder `\bin\win64`. A solution may be to install the appropriate version of MATLAB Compiler Runtime [(link)](https://www.mathworks.com/products/compiler/mcr.html).
+When the app is launched for the first time, `mksqlite` may complain about some missing files (`msvcr100.dll` and `msvcp100.dll`). These DLLs are from the Microsoft Visual C++ 2010 Redistributable Package and could be found by copying them over from somewhere else to the MATLAB subfolder `\bin\win64`. A better solution may be to install the appropriate version of MATLAB Compiler Runtime ([link](https://www.mathworks.com/products/compiler/mcr.html)).
 
 For reference, here are the steps to install the SI Image SGL camera control program:
-* Run `setup.bat` in the subfolder `.\Drivers and Documentation\Spectral Instrument Camera\SI Image SGL E Installation Files`.
-* Copy over the various configuration files (`*.set`, `*.bin`, `*.cfg`) in the same subfolder to the folder `C:\Users\Public\Public Documents\SI Image SGL Rev E`.
+1. Run `setup.bat` in the subfolder `.\Drivers and Documentation\Spectral Instrument Camera\SI Image SGL E Installation Files`.
+2. Copy over the configuration files (`*.set`, `*.bin`, `*.cfg`) in the same subfolder to the folder `C:\Users\Public\Public Documents\SI Image SGL Rev E`.
 
 ## Co-authorship and Acknowledgment
 
